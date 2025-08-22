@@ -1,5 +1,5 @@
 body {
-  background: url(/background.jpeg);
+  background: url(background.jpeg);
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -191,4 +191,5 @@ footer {
     color: #ff7790;
     text-transform: capitalize;
   }
+
 }
