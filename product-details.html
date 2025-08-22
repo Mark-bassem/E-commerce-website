@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product details</title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/product-details.css" />
+
+    <link rel="shortcut icon" href="/icon.svg" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>MARK</span>
+        <p>Shopping</p>
+      </a>
+
+      <div class="links">
+        <a style="position: relative" class="cart" href="/cart.html">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="products-number">2</span>
+        </a>
+        <a class="sign-in" href="/signin.html">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Sign in</a
+        >
+        <a class="register" href="/register.html">
+          <i class="fa-solid fa-user-plus"></i>
+          Register</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <img alt="" src="/sports t-shirt.png" />
+
+      <div class="product-details">
+        <div>
+          <h2>Sports T-shirt</h2>
+          <p class="price">$50</p>
+        </div>
+
+        <p class="description">
+          Stay cool and stylish with this **light gray sleeveless sports
+          t-shirt**. Designed with a slim fit cut, it highlights your physique
+          while keeping you comfortable. The soft, breathable fabric makes it
+          perfect for workouts, running, beach days, or casual summer wear. With
+          its clean round neckline and modern design, this t-shirt is a
+          must-have for anyone who loves an active lifestyle with a touch of
+          style.
+        </p>
+
+        <button class="flex add-to-cart">
+          <i class="fa-solid fa-cart-plus"></i>
+          Add To Cart
+        </button>
+      </div>
+    </main>
+
+    <footer class="">
+      Designed and developed by
+      <span> Mark Bassem </span>
+      © 2025.
+    </footer>
+
+    <script src="/product-details.js"></script>
+    <script src="/cart-utils.js"></script>
+  </body>
+</html>
