@@ -1,5 +1,5 @@
 body {
-  background: url(/background.jpeg);
+  background: url(background.jpeg);
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -258,4 +258,5 @@ section.summary {
     color: var(--red-button);
     font-size: 0.9rem;
   }
+
 }
