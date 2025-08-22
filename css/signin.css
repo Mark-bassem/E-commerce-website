@@ -1,0 +1,189 @@
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+
+header {
+  /*---------------------------
+    right section (links)
+  ---------------------------*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 12%;
+  padding-top: 1.4rem;
+
+  & .sign-in {
+    margin-inline: 1.2rem;
+  }
+
+  & .sign-in,
+  .register {
+    border: 1px solid var(--font);
+    padding: 0.5rem 1.1rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  & .sign-in:hover,
+  .register:hover {
+    background-color: var(--font);
+    color: var(--blue);
+    & .fa-solid {
+      color: var(--icons);
+    }
+  }
+
+  & .cart {
+    background-color: var(--font);
+    color: var(--blue);
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem 0.5rem 0.8rem;
+    border-radius: 25px;
+    position: relative;
+  }
+
+  .cart a {
+    position: relative;
+  }
+
+  & .cart .fa-solid {
+    color: var(--blue);
+  }
+
+  & .cart .products-number {
+    position: absolute;
+    background-color: rgb(27, 27, 185);
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    right: 0;
+    top: -5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  & .links .fa-solid {
+    margin-right: 0.3rem;
+  }
+
+  & a {
+    all: unset;
+    display: inline-block;
+    transition: 0.4s;
+  }
+
+  & a:active {
+    scale: 0.9;
+  }
+
+  /*---------------------------
+    left section (logo)
+  ---------------------------*/
+
+  & .fa-bag-shopping {
+    font-size: 2rem;
+  }
+
+  & .logo span {
+    font-weight: bold;
+  }
+
+  & .logo p {
+    letter-spacing: 0.5px;
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+}
+
+main {
+  max-width: 500px;
+
+  & form {
+    text-align: left;
+  }
+}
+
+form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+form label {
+  color: #1e1e1e;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+form .form-control {
+  border: 1px solid #444;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+form .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.7);
+  background-color: #333;
+}
+
+.form-check-input {
+  accent-color: #0d6efd;
+  transform: scale(1.2);
+  margin-right: 6px;
+}
+
+.form-check-label {
+  color: #ddd;
+}
+
+form .btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+form .btn-primary:hover {
+  background-color: #1e1e1e;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+}
+
+.fa-solid {
+  color: white;
+}
+
+footer {
+  background-color: var(--icons);
+  background-color: transparent;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-block: 1.2rem;
+  margin-top: 2.5rem;
+  color: white;
+  font-size: 20px;
+
+  & span {
+    color: #ff7790;
+    text-transform: capitalize;
+  }
+}
