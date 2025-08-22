@@ -93,7 +93,7 @@ header {
 }
 
 .image {
-  background: url(/background.jpeg);
+  background: url(background.jpeg);
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -285,4 +285,5 @@ footer {
   .image {
     background-position: left;
   }
+
 }
