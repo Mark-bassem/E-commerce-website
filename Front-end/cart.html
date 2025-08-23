@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce | Cart</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+      <h1>E-Shop</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html">Orders</a>
+        <a href="signin.html" id="authLink">Login</a>
+      </div>
+    </nav>
+
+    <!-- ===== CART TABLE ===== -->
+    <div class="container">
+      <h2>Your Cart</h2>
+      <table class="table" id="cartTable">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Cart items will be loaded here -->
+        </tbody>
+      </table>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+      async function loadCart() {
+        const cart = await API.getCart();
+        const tbody = document.querySelector("#cartTable tbody");
+
+        if (!cart || cart.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5">Your cart is empty</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = cart
+          .map(
+            (item) => `
+        <tr>
+          <td>${item.product.name}</td>
+          <td>
+            <input type="number" value="${item.quantity}" min="1" 
+              onchange="updateCart(${item.product.id}, this.value)">
+          </td>
+          <td>$${item.product.price}</td>
+          <td>$${item.product.price * item.quantity}</td>
+          <td><button onclick="removeFromCart(${
+            item.product.id
+          })">Remove</button></td>
+        </tr>
+      `
+          )
+          .join("");
+      }
+
+      async function updateCart(productId, qty) {
+        await API.addToCart(productId, parseInt(qty));
+        loadCart();
+      }
+
+      async function removeFromCart(productId) {
+        await API.removeFromCart(productId);
+        loadCart();
+      }
+
+      async function checkout() {
+        const res = await API.checkout();
+        alert(res.message || "Order placed!");
+        loadCart();
+      }
+
+      // Update login/logout link
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        const authLink = document.getElementById("authLink");
+        if (localStorage.getItem("token")) {
+          authLink.textContent = "Logout";
+          authLink.href = "#";
+          authLink.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            location.reload();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

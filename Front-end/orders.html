@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce | Orders</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+      <h1>E-Shop</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html">Orders</a>
+        <a href="signin.html" id="authLink">Login</a>
+      </div>
+    </nav>
+
+    <!-- ===== ORDERS LIST ===== -->
+    <div class="container">
+      <h2>My Orders</h2>
+      <table class="table" id="ordersTable">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Orders will load here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+      async function loadOrders() {
+        const orders = await API.getOrders();
+        const tbody = document.querySelector("#ordersTable tbody");
+
+        if (!orders || orders.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="4">No orders found.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = orders
+          .map(
+            (order) => `
+        <tr>
+          <td>#${order.id}</td>
+          <td>${new Date(order.createdAt).toLocaleString()}</td>
+          <td>${order.status}</td>
+          <td>$${order.total}</td>
+        </tr>
+      `
+          )
+          .join("");
+      }
+
+      // Load orders when page is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        loadOrders();
+        const authLink = document.getElementById("authLink");
+        if (localStorage.getItem("token")) {
+          authLink.textContent = "Logout";
+          authLink.href = "#";
+          authLink.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            location.reload();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

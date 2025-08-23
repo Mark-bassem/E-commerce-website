@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce | Home</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+      <h1>E-Shop</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="orders.html">Orders</a>
+        <a href="signin.html" id="authLink">Login</a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <header class="hero">
+      <h2>Welcome to E-Shop</h2>
+      <p>Find the best products at the best prices</p>
+      <a href="#products" class="btn">Shop Now</a>
+    </header>
+
+    <!-- ===== PRODUCTS GRID ===== -->
+    <div class="container" id="products">
+      <h2>Products</h2>
+      <div class="product-grid" id="productList">
+        <!-- Products will load here -->
+      </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+      async function loadProducts() {
+        const products = await API.getProducts();
+        const container = document.getElementById("productList");
+
+        if (!products || products.length === 0) {
+          container.innerHTML = `<p>No products available</p>`;
+          return;
+        }
+
+        container.innerHTML = products
+          .map(
+            (p) => `
+        <div class="product-card">
+          <img src="${p.image || "https://via.placeholder.com/150"}" alt="${
+              p.name
+            }">
+          <h3>${p.name}</h3>
+          <p>$${p.price}</p>
+          <button onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      `
+          )
+          .join("");
+      }
+
+      async function addToCart(productId) {
+        if (!localStorage.getItem("token")) {
+          alert("Please login first");
+          return;
+        }
+        await API.addToCart(productId, 1);
+        alert("Added to cart!");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadProducts();
+
+        // Update login/logout link
+        const authLink = document.getElementById("authLink");
+        if (localStorage.getItem("token")) {
+          authLink.textContent = "Logout";
+          authLink.href = "#";
+          authLink.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            location.reload();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
